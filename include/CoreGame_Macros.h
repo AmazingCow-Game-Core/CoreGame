@@ -41,67 +41,8 @@
 #ifndef __CoreGame_include_CoreGame_Macros_h__
 #define __CoreGame_include_CoreGame_Macros_h__
 
-// NDEBUG - Release mode.
-#if defined(NDEBUG)
-    #define COREGAME_ASSERT(_cond_, _msg_)           do {} while(0)
-    #define COREGAME_ASSERT_ARGS(_cond_, _msg_, ...) do {} while(0)
-
-// !NDEBUG - Debug mode.
-#else // defined(NDEBUG) == false
-
-    ///@brief
-    ///    This function is only declared for !NDEBUG, this is what
-    ///    COREGAME_ASSERT and COREGAME_ASSERT_ARGS will call.
-    ///@warning DO NOT CALL IT DIRECTLY.
-    ///@see COREGAME_ASSERT, COREGAME_ASSERT_ARGS
-    void _coregame_assert_print_args(const char   *expr,
-                                     const char   *file,
-                                     unsigned int line,
-                                     const char   *func,
-                                     const char   *msg,
-                                     ...);
-
-    ///@brief
-    ///     A more informative assert than the standard assert.
-    ///@param
-    ///     cond - The condition that will be asserted.
-    ///@param
-    ///     msg - The message the will be printed along the other info.
-    ///@see
-    ///     COREGAME_ASSERT_ARGS, COREGAME_VERIFY
-    #define COREGAME_ASSERT(_cond_, _msg_)               \
-                ((_cond_))                               \
-                 ? (void) 0                              \
-                 : _coregame_assert_print_args(#_cond_,  \
-                                               __FILE__, \
-                                               __LINE__, \
-                                               __func__, \
-                                               (_msg_));
-
-    ///@brief
-    ///    A more informative assert than the standard assert.
-    ///@param
-    ///    cond - The condition that will be asserted.
-    ///@param
-    ///    msg - The message the will be printed along the other info. \n
-    ///          This can be used like a printf(3) format string.
-    ///@param
-    ///    ... - variadic arguments list that will be used to build the final
-    ///          message. \n
-    ///          This is used like the printf(3) var args list.
-    ///@see
-    ///    COREGAME_ASSERT, COREGAME_VERIFY
-    #define COREGAME_ASSERT_ARGS(_cond_, _msg_, ...)         \
-                ((_cond_))                                   \
-                 ? (void) 0                                  \
-                 : _coregame_assert_print_args(#_cond_,      \
-                                               __FILE__,     \
-                                               __LINE__,     \
-                                               __func__,     \
-                                               (_msg_),      \
-                                               ##__VA_ARGS__)
-
-
-#endif // defined(NDEBUG)
+#include "./Macros/CoreGame_Assert.h"
+#include "./Macros/CoreGame_Singleton.h"
+#include "./Macros/CoreGame_Disallow.h"
 
 #endif // defined(__CoreGame_include_CoreGame_Macros_h__) //
