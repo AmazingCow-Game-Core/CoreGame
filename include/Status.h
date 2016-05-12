@@ -38,8 +38,8 @@
 //                                  Enjoy :)                                  //
 //----------------------------------------------------------------------------//
 
-#ifndef __CoreHangman_include_Status_h__
-#define __CoreHangman_include_Status_h__
+#ifndef __CoreGame_include_Status_h__
+#define __CoreGame_include_Status_h__
 
 //std
 #include <ostream>
@@ -62,4 +62,4 @@ std::ostream& operator <<(std::ostream &os, Status status);
 
 
 NS_COREGAME_END
-#endif // defined(__CoreHangman_include_Status_h__) //
+#endif // defined(__CoreGame_include_Status_h__) //
