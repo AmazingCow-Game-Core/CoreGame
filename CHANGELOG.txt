@@ -1,5 +1,22 @@
 --------------------------------------------------------------------------------
 | Version 0.0.x                                                                |
 --------------------------------------------------------------------------------
+- v0.0.2 - May 12, 2016
+    include/Macros/CoreGame_Singleton.h
+        - Add the singleton macro.
+
+    include/Macros/CoreGame_Disallow.h
+        - Add the disallow ctors and assignment macros.
+
+    include/Macros/CoreGame_Assert.h
+        - Add the assert macros.
+
+    include/CoreGame_Macros.h
+        - Split the macros into separated files to
+        better organization.
+
+    - Fix the include guard.
+
+--------------------------------------------------------------------------------
 - v0.0.1 - Start project.
 
