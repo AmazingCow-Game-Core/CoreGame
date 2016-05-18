@@ -1,6 +1,12 @@
 --------------------------------------------------------------------------------
 | Version 0.0.x                                                                |
 --------------------------------------------------------------------------------
+- v0.0.3 - May 17, 2016
+    include/Macros/CoreGame_Disallow.h
+        - Fix the macro name.
+        - Add the other disallow macros.
+
+--------------------------------------------------------------------------------
 - v0.0.2 - May 12, 2016
     include/Macros/CoreGame_Singleton.h
         - Add the singleton macro.
