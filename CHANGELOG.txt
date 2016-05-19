@@ -1,6 +1,16 @@
 --------------------------------------------------------------------------------
 | Version 0.0.x                                                                |
 --------------------------------------------------------------------------------
+- v0.0.4 - May 19, 2016
+    include/Macros/CoreGame_Callbacks.h
+        - Add the Callback macros.
+          Thanks Cocos2d-x <3.
+
+    include/CoreGame_Macros.h
+        - Sort the includes.
+        - Add the CoreGame_Callbacks header.
+
+--------------------------------------------------------------------------------
 - v0.0.3 - May 17, 2016
     include/Macros/CoreGame_Disallow.h
         - Fix the macro name.
