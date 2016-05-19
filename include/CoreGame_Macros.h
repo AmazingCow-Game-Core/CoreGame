@@ -42,7 +42,8 @@
 #define __CoreGame_include_CoreGame_Macros_h__
 
 #include "./Macros/CoreGame_Assert.h"
-#include "./Macros/CoreGame_Singleton.h"
+#include "./Macros/CoreGame_Callbacks.h"
 #include "./Macros/CoreGame_Disallow.h"
+#include "./Macros/CoreGame_Singleton.h"
 
 #endif // defined(__CoreGame_include_CoreGame_Macros_h__) //
