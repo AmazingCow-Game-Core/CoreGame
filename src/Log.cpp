@@ -47,7 +47,39 @@
 USING_NS_COREGAME;
 
 
-// CTOR / DTOR //
+////////////////////////////////////////////////////////////////////////////////
+// Operator Overloads for Log::Type                                           //
+////////////////////////////////////////////////////////////////////////////////
+std::ostream& operator <<(std::ostream &os, Log::Type t)
+{
+    auto s = (t == Log::Type::Fatal)   ?  "Fatal"    :
+          (t == Log::Type::Error)   ?  "Error"    :
+          (t == Log::Type::Warning) ?  "Warning"  :
+          (t == Log::Type::Verbose) ?  "Verbose"  :
+          (t == Log::Type::Debug1)  ?  "Debug1"   :
+          (t == Log::Type::Debug2)  ?  "Debug2"   :
+          (t == Log::Type::Debug3)  ?  "Debug3"   :
+          (t == Log::Type::Debug4)  ?  "Debug4"   :
+                                       "DUMMY";
+
+    os << s;
+    return os;
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Static Methods                                                             //
+////////////////////////////////////////////////////////////////////////////////
+Log& Log::GetDefaultLogger()
+{
+    static Log s_logger;
+    return s_logger;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// CTOR / DTOR                                                                //
+////////////////////////////////////////////////////////////////////////////////
 Log::Log()
 {
     addLogType(Type::Fatal);
@@ -68,7 +100,9 @@ Log::~Log()
 }
 
 
-// Public Methods //
+////////////////////////////////////////////////////////////////////////////////
+// Public Methods                                                             //
+////////////////////////////////////////////////////////////////////////////////
 void Log::addLogType(Type type)
 {
     m_type |= static_cast<int>(type);
@@ -126,25 +160,25 @@ void Log::log(Type type, const char *fmt, ...)
     // Build the buffer with the variadic args list.
     va_list ap;
     va_start(ap, fmt);
-    vsnprintf(buffer, kBufferSize , fmt, ap);
-    vsnprintf(buffer, kBufferSize , fmt, ap);
+    vsnprintf(buffer, kBufferSize, fmt, ap);
     va_end(ap);
-
 
     //Check for cout.
     if(isLogOutputActive(Output::stdout))
-        std::cout << buffer << std::endl;
+        logAt(type, std::cout, buffer);
 
     //Check for cerr.
     if(isLogOutputActive(Output::stderr))
-        std::cerr << buffer << std::endl;
+        logAt(type, std::cerr, buffer);
 
     //Check for file and if file is open.
     if(isLogOutputActive(Output::file) && m_filestream.is_open())
-        m_filestream << buffer << std::endl;
+        logAt(type, m_filestream, buffer);
 }
 
-// Private Methods //
+////////////////////////////////////////////////////////////////////////////////
+// Private Methods                                                            //
+////////////////////////////////////////////////////////////////////////////////
 void Log::closeFileStream()
 {
     if(m_filestream.is_open())
@@ -154,3 +188,8 @@ void Log::closeFileStream()
     }
 }
 
+
+void Log::logAt(Type type, std::ostream &os, const char *msg)
+{
+    os << "[" << type << "] " << msg << std::endl << std::flush;
+}
