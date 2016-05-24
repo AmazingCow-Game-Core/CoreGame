@@ -2,7 +2,7 @@
 //               █      █                                                     //
 //               ████████                                                     //
 //             ██        ██                                                   //
-//            ███  █  █  ███        CoreGame.h                                //
+//            ███  █  █  ███        Log.h                                     //
 //            █ █        █ █        CoreGame                                  //
 //             ████████████                                                   //
 //           █              █       Copyright (c) 2016                        //
@@ -38,13 +38,80 @@
 //                                  Enjoy :)                                  //
 //----------------------------------------------------------------------------//
 
-#ifndef __CoreGame_include_CoreGame_h__
-#define __CoreGame_include_CoreGame_h__
+#ifndef __CoreGame_include_CoreGame_Log_h__
+#define __CoreGame_include_CoreGame_Log_h__
 
-#include "CoreGame_Macros.h"
+//std
+#include <cstdarg>
+#include <string>
+#include <fstream>
+//CoreGame
 #include "CoreGame_Utils.h"
-#include "Log.h"
-#include "Status.h"
+#include "CoreGame_Macros.h"
+
+//COWTODO: Add documentation.
+//COWTODO: Discover a way to add* and remove* methods accepts
+//         any number of args like addOutput(stdout, stderr, file);
+
+NS_COREGAME_BEGIN
+
+class Log
+{
+    // Enums //
+public:
+    enum class Type
+    {
+        Fatal   = 1 << 0,
+        Error   = 1 << 1,
+        Warning = 1 << 2,
+        Verbose = 1 << 3,
+        Debug1  = 1 << 4,
+        Debug2  = 1 << 5,
+        Debug3  = 1 << 5,
+        Debug4  = 1 << 6,
+    };
+
+    enum class Output
+    {
+        stdout = 1 << 0,
+        stderr = 1 << 1,
+        file   = 1 << 2,
+    };
 
 
-#endif // defined(__CoreGame_include_CoreGame_h__) //
+    // CTOR / DTOR //
+public:
+    Log();
+    ~Log();
+
+
+    // Public Methods //
+public:
+    void addLogType(Type type);
+    void removeLogType(Type type);
+    bool isLogTypeActive(Type type) const;
+
+    void addLogOutput(Output output);
+    void removeLogOutput(Output output);
+    bool isLogOutputActive(Output output) const;
+
+    void setLogFileFilename(const std::string &filename, bool append);
+
+    void log(Type type, const char *fmt, ...);
+
+
+    // Private Methods //
+private:
+    void closeFileStream();
+
+    // iVars //
+private:
+    int m_type;
+    int m_output;
+
+    std::string  m_filename;
+    std::fstream m_filestream;
+};
+
+NS_COREGAME_END
+#endif // defined(__CoreGame_include_CoreGame_Log_h__) //

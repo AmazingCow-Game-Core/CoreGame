@@ -2,7 +2,7 @@
 //               █      █                                                     //
 //               ████████                                                     //
 //             ██        ██                                                   //
-//            ███  █  █  ███        CoreGame.h                                //
+//            ███  █  █  ███        Log.cpp                                   //
 //            █ █        █ █        CoreGame                                  //
 //             ████████████                                                   //
 //           █              █       Copyright (c) 2016                        //
@@ -38,13 +38,119 @@
 //                                  Enjoy :)                                  //
 //----------------------------------------------------------------------------//
 
-#ifndef __CoreGame_include_CoreGame_h__
-#define __CoreGame_include_CoreGame_h__
+//Header
+#include "../include/Log.h"
+//std
+#include <iostream>
 
-#include "CoreGame_Macros.h"
-#include "CoreGame_Utils.h"
-#include "Log.h"
-#include "Status.h"
+//Usings
+USING_NS_COREGAME;
 
 
-#endif // defined(__CoreGame_include_CoreGame_h__) //
+// CTOR / DTOR //
+Log::Log()
+{
+    addLogType(Type::Fatal);
+    addLogType(Type::Error);
+    addLogType(Type::Warning);
+    addLogType(Type::Verbose);
+    addLogType(Type::Debug1);
+    addLogType(Type::Debug2);
+    addLogType(Type::Debug3);
+    addLogType(Type::Debug4);
+
+    addLogOutput(Output::stdout);
+}
+
+Log::~Log()
+{
+    closeFileStream();
+}
+
+
+// Public Methods //
+void Log::addLogType(Type type)
+{
+    m_type |= static_cast<int>(type);
+}
+
+void Log::removeLogType(Type type)
+{
+    m_type &= ~static_cast<int>(type);
+}
+
+bool Log::isLogTypeActive(Type type) const
+{
+    return m_type & static_cast<int>(type);
+}
+
+
+void Log::addLogOutput(Output output)
+{
+    m_output |= static_cast<int>(output);
+}
+
+void Log::removeLogOutput(Output output)
+{
+    m_output &= ~static_cast<int>(output);
+}
+
+bool Log::isLogOutputActive(Output output) const
+{
+    return m_output & static_cast<int>(output);
+}
+
+
+void Log::setLogFileFilename(const std::string &filename, bool append)
+{
+    closeFileStream();
+    auto mode = (append)
+                ? std::ios::out | std::ios::app
+                : std::ios::out;
+
+    m_filestream.open(filename, mode);
+    COREGAME_ASSERT_ARGS(m_filestream.is_open() == true,
+                         "Failed to open stream with filename (%s)",
+                         filename.c_str());
+}
+
+void Log::log(Type type, const char *fmt, ...)
+{
+    if(!isLogTypeActive(type))
+        return;
+
+    //Build the output string.
+    constexpr int kBufferSize = 1024;
+    char buffer[kBufferSize]  = { '\0' };
+
+    // Build the buffer with the variadic args list.
+    va_list ap;
+    va_start(ap, fmt);
+    vsnprintf(buffer, kBufferSize , fmt, ap);
+    vsnprintf(buffer, kBufferSize , fmt, ap);
+    va_end(ap);
+
+
+    //Check for cout.
+    if(isLogOutputActive(Output::stdout))
+        std::cout << buffer << std::endl;
+
+    //Check for cerr.
+    if(isLogOutputActive(Output::stderr))
+        std::cerr << buffer << std::endl;
+
+    //Check for file and if file is open.
+    if(isLogOutputActive(Output::file) && m_filestream.is_open())
+        m_filestream << buffer << std::endl;
+}
+
+// Private Methods //
+void Log::closeFileStream()
+{
+    if(m_filestream.is_open())
+    {
+        m_filestream.flush();
+        m_filestream.close();
+    }
+}
+
