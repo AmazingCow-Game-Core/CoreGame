@@ -1,6 +1,21 @@
 --------------------------------------------------------------------------------
 | Version 0.0.x                                                                |
 --------------------------------------------------------------------------------
+- v0.0.6 - May 25, 2016
+    include/Log.h
+    include/Log.cpp
+        - Add the comment separators.
+        - Add overload << operator for Log::Type.
+        - Add the static GetDefaultLogger.
+        - Fix a bug on log() method.
+          We're vsnprintf two times.
+        - Refactor the log out into the logAt() method.
+        - Add a macro COREGAME_DLOG() to log only in debug.
+
+    include/CoreGame_Utils.h
+        - Update the version numbers.
+
+--------------------------------------------------------------------------------
 - v0.0.5 - May 25, 2016
      - Add the first implementation of Log class.
      - Update the version numbers.
