@@ -45,6 +45,6 @@
 #include "CoreGame_Utils.h"
 #include "Log.h"
 #include "Status.h"
-
+#include "StringUtils.h"
 
 #endif // defined(__CoreGame_include_CoreGame_h__) //
