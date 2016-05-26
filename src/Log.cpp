@@ -42,6 +42,8 @@
 #include "../include/Log.h"
 //std
 #include <iostream>
+//CoreGame
+#include "../include/StringUtils.h"
 
 //Usings
 USING_NS_COREGAME;
@@ -53,14 +55,14 @@ USING_NS_COREGAME;
 std::ostream& operator <<(std::ostream &os, Log::Type t)
 {
     auto s = (t == Log::Type::Fatal)   ?  "Fatal"    :
-          (t == Log::Type::Error)   ?  "Error"    :
-          (t == Log::Type::Warning) ?  "Warning"  :
-          (t == Log::Type::Verbose) ?  "Verbose"  :
-          (t == Log::Type::Debug1)  ?  "Debug1"   :
-          (t == Log::Type::Debug2)  ?  "Debug2"   :
-          (t == Log::Type::Debug3)  ?  "Debug3"   :
-          (t == Log::Type::Debug4)  ?  "Debug4"   :
-                                       "DUMMY";
+             (t == Log::Type::Error)   ?  "Error"    :
+             (t == Log::Type::Warning) ?  "Warning"  :
+             (t == Log::Type::Verbose) ?  "Verbose"  :
+             (t == Log::Type::Debug1)  ?  "Debug1"   :
+             (t == Log::Type::Debug2)  ?  "Debug2"   :
+             (t == Log::Type::Debug3)  ?  "Debug3"   :
+             (t == Log::Type::Debug4)  ?  "Debug4"   :
+                                          "DUMMY";
 
     os << s;
     return os;
@@ -76,6 +78,7 @@ Log& Log::GetDefaultLogger()
     static Log s_logger;
     return s_logger;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // CTOR / DTOR                                                                //
@@ -153,15 +156,14 @@ void Log::log(Type type, const char *fmt, ...)
     if(!isLogTypeActive(type))
         return;
 
-    //Build the output string.
-    constexpr int kBufferSize = 1024;
-    char buffer[kBufferSize]  = { '\0' };
+    //Build the string.
+    va_list args;
+    va_start(args, fmt);
 
-    // Build the buffer with the variadic args list.
-    va_list ap;
-    va_start(ap, fmt);
-    vsnprintf(buffer, kBufferSize, fmt, ap);
-    va_end(ap);
+    auto buffer = StringUtils::vformat(fmt, args);
+
+    va_end(args);
+
 
     //Check for cout.
     if(isLogOutputActive(Output::stdout))
@@ -176,6 +178,7 @@ void Log::log(Type type, const char *fmt, ...)
         logAt(type, m_filestream, buffer);
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // Private Methods                                                            //
 ////////////////////////////////////////////////////////////////////////////////
@@ -189,7 +192,7 @@ void Log::closeFileStream()
 }
 
 
-void Log::logAt(Type type, std::ostream &os, const char *msg)
+void Log::logAt(Type type, std::ostream &os, const std::string &msg)
 {
     os << "[" << type << "] " << msg << std::endl << std::flush;
 }

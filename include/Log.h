@@ -106,7 +106,7 @@ public:
     // Private Methods //
 private:
     void closeFileStream();
-    void logAt(Type type, std::ostream &os, const char *msg);
+    void logAt(Type type, std::ostream &os, const std::string &buffer);
 
     // iVars //
 private:
@@ -122,11 +122,11 @@ NS_COREGAME_END
 #ifdef NDEBUG
     #define COREGAME_DLOG(_type_, _fmt_, ...) do {} while(0)
 #else
-    #define COREGAME_DLOG(_type_, _fmt_, ...) {             \
+    #define COREGAME_DLOG(_type_, _fmt_, ...) {               \
         CoreGame::Log::GetDefaultLogger().log(_type_,         \
-                                    _fmt_,          \
-                                    ##__VA_ARGS__); \
-    }
+                                              _fmt_,          \
+                                              ##__VA_ARGS__); \
+        }
 #endif //NDEBUG
 
 #endif // defined(__CoreGame_include_CoreGame_Log_h__) //
