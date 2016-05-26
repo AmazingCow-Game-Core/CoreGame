@@ -42,8 +42,8 @@
 #define __CoreGame_include_Macros_CoreGame_Singleton_h__
 
 #define COREGAME_SINGLETON_OF(_type_) \
-    static _type_* instance() {     \
-        static _type_ s_instance;   \
+    static _type_* instance() {       \
+        static _type_ s_instance;     \
         return &s_instance;           \
     };
 
