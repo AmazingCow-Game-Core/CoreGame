@@ -52,8 +52,8 @@
 //The core version number.
 #define COW_COREGAME_VERSION_MAJOR    "0"
 #define COW_COREGAME_VERSION_MINOR    "0"
-#define COW_COREGAME_VERSION_REVISION "6"
+#define COW_COREGAME_VERSION_REVISION "7"
 
-#define COW_COREGAME_VERSION "0.0.6"
+#define COW_COREGAME_VERSION "0.0.7"
 
 #endif // defined(__CoreGame_include_CoreGame_Utils_h__) //
