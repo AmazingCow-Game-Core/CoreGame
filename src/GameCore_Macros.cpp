@@ -7,27 +7,28 @@
 #include <cstdarg>
 #include <cstdio>
 #include <cstdlib>
+//CoreGame
+#include "../include/StringUtils.h"
 
 //Usings
-using namespace std;
+USING_NS_COREGAME;
 
 
 // Function Definitions //
 void _coregame_assert_print_args(const char   *expr,
-                                const char   *file,
-                                unsigned int line,
-                                const char   *func,
-                                const char   *msg,
-                                ...)
+                                 const char   *file,
+                                 unsigned int line,
+                                 const char   *func,
+                                 const char   *msg,
+                                 ...)
 {
-    constexpr int kBufferSize = 1024;
-    char buffer[kBufferSize]  = {'\0'};
+    va_list args;
+    va_start(args, msg);
 
-    // Build the buffer with the variadic args list //
-    va_list ap;
-    va_start(ap, msg);
-    vsnprintf(buffer, kBufferSize , msg, ap);
-    va_end(ap);
+    //Forward the '...' to vformat
+    auto buffer = StringUtils::vformat(msg, args);
+
+    va_end(args);
 
     // Print the message and abort //
     fprintf(stderr,
@@ -37,7 +38,7 @@ void _coregame_assert_print_args(const char   *expr,
   function   : %s \n \
   expression : %s \n \
   message    : %s \n",
-        file, line, func, expr, buffer);
+        file, line, func, expr, buffer.c_str());
 
     abort();
 }
