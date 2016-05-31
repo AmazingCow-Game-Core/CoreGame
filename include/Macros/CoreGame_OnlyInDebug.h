@@ -2,7 +2,7 @@
 //               █      █                                                     //
 //               ████████                                                     //
 //             ██        ██                                                   //
-//            ███  █  █  ███        CoreGame_Macros.h                         //
+//            ███  █  █  ███        CoreGame_OnlyInDebug.h                    //
 //            █ █        █ █        CoreGame                                  //
 //             ████████████                                                   //
 //           █              █       Copyright (c) 2016                        //
@@ -38,13 +38,14 @@
 //                                  Enjoy :)                                  //
 //----------------------------------------------------------------------------//
 
-#ifndef __CoreGame_include_CoreGame_Macros_h__
-#define __CoreGame_include_CoreGame_Macros_h__
+#ifndef __CoreGame_include_Macros_CoreGame_Assert_h__
+#define __CoreGame_include_Macros_CoreGame_Assert_h__
 
-#include "./Macros/CoreGame_Assert.h"
-#include "./Macros/CoreGame_Callbacks.h"
-#include "./Macros/CoreGame_Disallow.h"
-#include "./Macros/CoreGame_Singleton.h"
-#include "./Macros/CoreGame_OnlyInDebug.h"
+// Not NDEBUG - Debug mode.
+#if !defined(NDEBUG)
+    COREGAME_ONLY_IN_DEBUG(_code_) { \
+        _code_;
+    }
+#endif // !defined(NDEBUG)
 
-#endif // defined(__CoreGame_include_CoreGame_Macros_h__) //
+#endif // defined(__CoreGame_include_Macros_CoreGame_Assert_h__) //
