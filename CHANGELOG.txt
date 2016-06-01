@@ -1,6 +1,14 @@
 --------------------------------------------------------------------------------
 | Version 0.0.x                                                                |
 --------------------------------------------------------------------------------
+- v0.0.9 - Jun 1, 2016
+    include/Macros/CoreGame_Disallow.h
+        - Add comment separators.
+        - Add new macros.
+    include/Log.h
+        - Add a overload for log().
+    
+--------------------------------------------------------------------------------    
 - v0.0.8 - May 30, 2016
     - Add the COREGAME_ONLY_IN_DEBUG macro to allow
       we add code that should be compiled only in debug mode.
