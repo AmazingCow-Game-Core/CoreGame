@@ -41,6 +41,46 @@
 #ifndef __CoreGame_include_Macros_CoreGame_Disallow_h__
 #define __CoreGame_include_Macros_CoreGame_Disallow_h__
 
+
+////////////////////////////////////////////////////////////////////////////////
+// CTOR                                                                       //
+////////////////////////////////////////////////////////////////////////////////
+#define COREGAME_DISALLOW_CTOR(_type_) \
+            _type_() = delete;
+
+
+////////////////////////////////////////////////////////////////////////////////
+// COPY / COPY ASSING                                                         //
+////////////////////////////////////////////////////////////////////////////////
+#define COREGAME_DISALLOW_COPY(_type_) \
+            _type_(const _type_&) = delete;
+
+#define COREGAME_DISALLOW_COPY_ASSIGN(_type_)\
+            _type_& operator=(const _type_&) = delete;
+
+
+////////////////////////////////////////////////////////////////////////////////
+// MOVE / MOVE ASSIGN                                                         //
+////////////////////////////////////////////////////////////////////////////////
+#define COREGAME_DISALLOW_MOVE(_type_)  \
+            _type_(_type_&&) = delete;
+
+#define COREGAME_DISALLOW_MOVE_ASSIGN(_type_) \
+            _type_& operator=(_type_&&) = delete;
+
+
+////////////////////////////////////////////////////////////////////////////////
+//                                                          //
+////////////////////////////////////////////////////////////////////////////////
+
+#define COREGAME_DISALLOW_CTOR_COPY_MOVE_ASSIGNS(_type_) \
+            COREGAME_DISALLOW_CTOR(_type_)               \
+            COREGAME_DISALLOW_COPY(_type_)               \
+            COREGAME_DISALLOW_COPY_ASSIGN(_type_)        \
+            COREGAME_DISALLOW_MOVE(_type_)               \
+            COREGAME_DISALLOW_MOVE_ASSIGN(_type_)
+
+
 #define COREGAME_DISALLOW_COPY_MOVE_ASSIGNS(_type_)    \
             /* Mo copy */                              \
             _type_(const _type_&) = delete;            \
@@ -49,20 +89,6 @@
             /* No move */                              \
             _type_(_type_&&) = delete;                 \
             /* No move-assign */                       \
-            _type_& operator=(_type_&&) = delete;
-
-
-#define COREGAME_DISALLOW_COPY(_type_)      \
-            _type_(const _type_&) = delete; \
-
-#define COREGAME_DISALLOW_MOVE(_type_)  \
-            _type_(_type_&&) = delete;  \
-
-#define COREGAME_DISALLOW_COPY_ASSIGN(_type_)          \
-            _type_& operator=(const _type_&) = delete; \
-
-#define COREGAME_DISALLOW_MOVE_ASSIGN(_type_)     \
-             /* No move-assign */                 \
             _type_& operator=(_type_&&) = delete;
 
 
