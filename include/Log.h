@@ -100,6 +100,7 @@ public:
 
     void setLogFileFilename(const std::string &filename, bool append);
 
+    void log(Type type, const std::string &str);
     void log(Type type, const char *fmt, ...);
 
 
@@ -107,6 +108,7 @@ public:
 private:
     void closeFileStream();
     void logAt(Type type, std::ostream &os, const std::string &buffer);
+
 
     // iVars //
 private:

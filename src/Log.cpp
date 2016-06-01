@@ -151,6 +151,25 @@ void Log::setLogFileFilename(const std::string &filename, bool append)
                          filename.c_str());
 }
 
+void Log::log(Type type, const std::string &str)
+{
+    if(!isLogTypeActive(type))
+        return;
+
+    //Check for cout.
+    if(isLogOutputActive(Output::stdout))
+        logAt(type, std::cout, str);
+
+    //Check for cerr.
+    if(isLogOutputActive(Output::stderr))
+        logAt(type, std::cerr, str);
+
+    //Check for file and if file is open.
+    if(isLogOutputActive(Output::file) && m_filestream.is_open())
+        logAt(type, m_filestream, str);
+
+}
+
 void Log::log(Type type, const char *fmt, ...)
 {
     if(!isLogTypeActive(type))
@@ -160,22 +179,9 @@ void Log::log(Type type, const char *fmt, ...)
     va_list args;
     va_start(args, fmt);
 
-    auto buffer = StringUtils::vformat(fmt, args);
+    log(type, StringUtils::vformat(fmt, args));
 
     va_end(args);
-
-
-    //Check for cout.
-    if(isLogOutputActive(Output::stdout))
-        logAt(type, std::cout, buffer);
-
-    //Check for cerr.
-    if(isLogOutputActive(Output::stderr))
-        logAt(type, std::cerr, buffer);
-
-    //Check for file and if file is open.
-    if(isLogOutputActive(Output::file) && m_filestream.is_open())
-        logAt(type, m_filestream, buffer);
 }
 
 
