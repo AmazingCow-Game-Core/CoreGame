@@ -1,5 +1,5 @@
-// This source is meant to compiled only in DEBUG builds (!NDEBUG) //
-#ifndef NDEBUG
+// This source is meant to compiled only in DEBUG builds (!COREGAME_RELEASE) //
+#ifndef COREGAME_RELEASE
 
 //Header
 #include "../include/CoreGame_Macros.h"
@@ -43,4 +43,4 @@ void _coregame_assert_print_args(const char   *expr,
     abort();
 }
 
-#endif // NDEBUG //
+#endif // COREGAME_RELEASE //

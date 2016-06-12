@@ -122,7 +122,7 @@ private:
 NS_COREGAME_END
 
 
-#ifdef NDEBUG
+#ifdef COREGAME_RELEASE
     #define COREGAME_DLOG(_type_, _fmt_, ...) do {} while(0)
 #else
     #define COREGAME_DLOG(_type_, _fmt_, ...)               \
@@ -130,6 +130,6 @@ NS_COREGAME_END
                                               _fmt_,        \
                                               ##__VA_ARGS__)
 
-#endif //NDEBUG
+#endif //COREGAME_RELEASE
 
 #endif // defined(__CoreGame_include_CoreGame_Log_h__) //

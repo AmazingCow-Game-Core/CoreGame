@@ -41,11 +41,11 @@
 #ifndef __CoreGame_include_Macros_CoreGame_Assert_h__
 #define __CoreGame_include_Macros_CoreGame_Assert_h__
 
-// Not NDEBUG - Debug mode.
-#if !defined(NDEBUG)
+// Not COREGAME_RELEASE - Debug mode.
+#if !defined(COREGAME_RELEASE)
     COREGAME_ONLY_IN_DEBUG(_code_) { \
         _code_;
     }
-#endif // !defined(NDEBUG)
+#endif // !defined(COREGAME_RELEASE)
 
 #endif // defined(__CoreGame_include_Macros_CoreGame_Assert_h__) //

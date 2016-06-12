@@ -41,17 +41,19 @@
 #ifndef __CoreGame_include_Macros_CoreGame_Assert_h__
 #define __CoreGame_include_Macros_CoreGame_Assert_h__
 
-// NDEBUG - Release mode.
-#if defined(NDEBUG)
+// COREGAME_RELEASE - Release mode.
+#if defined(COREGAME_RELEASE)
     #define COREGAME_ASSERT(_cond_, _msg_)           do {} while(0)
     #define COREGAME_ASSERT_ARGS(_cond_, _msg_, ...) do {} while(0)
 
-// !NDEBUG - Debug mode.
-#else // defined(NDEBUG) == false
+// !COREGAME_RELEASE - Debug mode.
+#else // defined(COREGAME_RELEASE) == false
 
     ///@brief
-    ///    This function is only declared for !NDEBUG, this is what
-    ///    COREGAME_ASSERT and COREGAME_ASSERT_ARGS will call.
+    ///    This function is only declared for !COREGAME_RELEASE,
+    ///    this is what COREGAME_ASSERT and COREGAME_ASSERT_ARGS
+    ///    will call.
+    ///
     ///@warning DO NOT CALL IT DIRECTLY.
     ///@see COREGAME_ASSERT, COREGAME_ASSERT_ARGS
     void _coregame_assert_print_args(const char   *expr,
@@ -102,6 +104,6 @@
                                                ##__VA_ARGS__)
 
 
-#endif // defined(NDEBUG)
+#endif // defined(COREGAME_RELEASE)
 
 #endif // defined(__CoreGame_include_Macros_CoreGame_Assert_h__) //
