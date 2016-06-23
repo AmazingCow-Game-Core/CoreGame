@@ -1,6 +1,15 @@
 --------------------------------------------------------------------------------
 | Version 0.0.x                                                                |
 --------------------------------------------------------------------------------
+- 0.0.12 - Jun 22, 2016
+-- General --
+    - Add the COREGAME_VERIFY macro.
+    - Fix some include guards.
+    - Add the info files.
+    - Add the update version script.
+
+
+--------------------------------------------------------------------------------    
 - 0.0.11 - Jun 12, 2016
 -- General --
     Change the NDEBUG define to COREGAME_RELEASE
