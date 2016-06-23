@@ -44,7 +44,8 @@
 #include "./Macros/CoreGame_Assert.h"
 #include "./Macros/CoreGame_Callbacks.h"
 #include "./Macros/CoreGame_Disallow.h"
-#include "./Macros/CoreGame_Singleton.h"
 #include "./Macros/CoreGame_OnlyInDebug.h"
+#include "./Macros/CoreGame_Singleton.h"
+#include "./Macros/CoreGame_Verify.h"
 
 #endif // defined(__CoreGame_include_CoreGame_Macros_h__) //
