@@ -53,7 +53,6 @@
     ///    This function is only declared for !COREGAME_RELEASE,
     ///    this is what COREGAME_ASSERT and COREGAME_ASSERT_ARGS
     ///    will call.
-    ///
     ///@warning DO NOT CALL IT DIRECTLY.
     ///@see COREGAME_ASSERT, COREGAME_ASSERT_ARGS
     void _coregame_assert_print_args(const char   *expr,
