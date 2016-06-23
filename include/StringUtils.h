@@ -38,8 +38,8 @@
 //                                  Enjoy :)                                  //
 //----------------------------------------------------------------------------//
 
-#ifndef __CoreGame_include_CoreGame_StringUtils_h__
-#define __CoreGame_include_CoreGame_StringUtils_h__
+#ifndef __CoreGame_include_StringUtils_h__
+#define __CoreGame_include_StringUtils_h__
 
 //std
 #include <string>
@@ -67,4 +67,4 @@ std::string vformat(const char *fmt, std::va_list list);
 } //namespace StringUtils
 
 NS_COREGAME_END
-#endif // defined(__CoreGame_include_CoreGame_StringUtils_h__) //
+#endif // defined(__CoreGame_include_StringUtils_h__) //

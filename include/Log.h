@@ -38,8 +38,8 @@
 //                                  Enjoy :)                                  //
 //----------------------------------------------------------------------------//
 
-#ifndef __CoreGame_include_CoreGame_Log_h__
-#define __CoreGame_include_CoreGame_Log_h__
+#ifndef __CoreGame_include_Log_h__
+#define __CoreGame_include_Log_h__
 
 //std
 #include <cstdarg>
@@ -132,4 +132,4 @@ NS_COREGAME_END
 
 #endif //COREGAME_RELEASE
 
-#endif // defined(__CoreGame_include_CoreGame_Log_h__) //
+#endif // defined(__CoreGame_include_Log_h__) //
