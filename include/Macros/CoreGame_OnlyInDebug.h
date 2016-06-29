@@ -46,6 +46,8 @@
     #define COREGAME_ONLY_IN_DEBUG(_code_) { \
         _code_;                              \
     }
+#else // !defined(COREGAME_RELEASE) - Release Mode.
+    #define COREGAME_ONLY_IN_DEBUG(_code_) {}
 #endif // !defined(COREGAME_RELEASE)
 
 #endif // defined(__CoreGame_include_Macros_CoreGame_OnlyInDebug_h__) //
