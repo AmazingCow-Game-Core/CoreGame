@@ -5,7 +5,7 @@
 //            ███  █  █  ███        CoreGame.h                                //
 //            █ █        █ █        CoreGame                                  //
 //             ████████████                                                   //
-//           █              █       Copyright (c) 2016                        //
+//           █              █       Copyright (c) 2016, 2917                  //
 //          █     █    █     █      AmazingCow - www.AmazingCow.com           //
 //          █     █    █     █                                                //
 //           █              █       N2OMatt - n2omatt@amazingcow.com          //
@@ -42,8 +42,10 @@
 #define __CoreGame_include_CoreGame_h__
 
 #include "CoreGame_Macros.h"
+#include "CoreGame_Memory.h"
 #include "CoreGame_Utils.h"
 #include "Log.h"
+#include "MathUtils.h"
 #include "Status.h"
 #include "StringUtils.h"
 
