@@ -73,9 +73,9 @@ public:
 
     enum class Output
     {
-        stdout = 1 << 0,
-        stderr = 1 << 1,
-        file   = 1 << 2,
+        kStdout = 1 << 0,
+        kStderr = 1 << 1,
+        kFile   = 1 << 2,
     };
 
     // Static Methods //
