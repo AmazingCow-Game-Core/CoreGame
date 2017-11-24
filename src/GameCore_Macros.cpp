@@ -1,20 +1,41 @@
+//~---------------------------------------------------------------------------//
+//                     _______  _______  _______  _     _                     //
+//                    |   _   ||       ||       || | _ | |                    //
+//                    |  |_|  ||       ||   _   || || || |                    //
+//                    |       ||       ||  | |  ||       |                    //
+//                    |       ||      _||  |_|  ||       |                    //
+//                    |   _   ||     |_ |       ||   _   |                    //
+//                    |__| |__||_______||_______||__| |__|                    //
+//                             www.amazingcow.com                             //
+//  File      : GameCore_Macros.cpp                                           //
+//  Project   : CoreGame                                                      //
+//  Date      : May 03, 2016                                                  //
+//  License   : GPLv3                                                         //
+//  Author    : n2omatt <n2omatt@amazingcow.com>                              //
+//  Copyright : AmazingCow - 2016, 2017                                       //
+//                                                                            //
+//  Description :                                                             //
+//                                                                            //
+//---------------------------------------------------------------------------~//
+
 // This source is meant to compiled only in DEBUG builds (!COREGAME_RELEASE) //
 #ifndef COREGAME_RELEASE
 
-//Header
+// Header
 #include "../include/CoreGame_Macros.h"
-//std
+// std
 #include <cstdarg>
 #include <cstdio>
 #include <cstdlib>
-//CoreGame
+// CoreGame
 #include "../include/StringUtils.h"
 
-//Usings
+// Usings
 USING_NS_COREGAME;
 
-
-// Function Definitions //
+//----------------------------------------------------------------------------//
+// Function Definitions                                                       //
+//----------------------------------------------------------------------------//
 void _coregame_assert_print_args(const char   *expr,
                                  const char   *file,
                                  unsigned int line,
