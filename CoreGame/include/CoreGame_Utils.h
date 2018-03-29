@@ -32,10 +32,11 @@
 // Version                                                                    //
 //----------------------------------------------------------------------------//
 #define COW_COREGAME_VERSION_MAJOR    "0"
-#define COW_COREGAME_VERSION_MINOR    "0"
-#define COW_COREGAME_VERSION_REVISION "13"
+#define COW_COREGAME_VERSION_MINOR    "1"
+#define COW_COREGAME_VERSION_REVISION "0"
 
 #define COW_COREGAME_VERSION       \
     COW_COREGAME_VERSION_MAJOR "." \
     COW_COREGAME_VERSION_MINOR "." \
     COW_COREGAME_VERSION_REVISION
+
