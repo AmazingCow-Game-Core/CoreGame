@@ -1,4 +1,36 @@
 --------------------------------------------------------------------------------
+| Version 0.1.x                                                                |
+--------------------------------------------------------------------------------
+- 0.1.0 - Mar 29, 2018
+-- General --
+    - Update the project structure to make it consistent with the
+      other AmazingCow's Libs.
+    - Remove all stuff that is provided by the other AmazingCow's libs already.
+    - Some cosmetic changes.
+    - Start using CMake.
+    - Start using the AmazingCow's update_version tool to bump version numbers.
+    - Update doxygen info.
+    - Update gitignore.
+
+-- Sources --
+    - [NEW] (README.md)
+        Write the new README file.
+    - [NEW] (CMakeLists.txt)
+        Start using CMake to manage this lib.
+    - [ADD] (include/Status.h)
+        IsGameOver function to check if the game is over.
+    - [CHANGE] (docs/mainpage.dox)
+        Fix the wording.
+        Add the links to project's github and AmazingCow's site.
+    - [CHANGE] (docs/Doxyfile)
+        Ignore the build folder.
+    - [CHANGE] (scripts/update_version.sh)
+        Rewrite the code to use the AmazingCow's tool.
+    - [CHANGE] (.gitignore)
+        Ignore the build folders and lhcrc.
+
+
+--------------------------------------------------------------------------------
 | Version 0.0.x                                                                |
 --------------------------------------------------------------------------------
 - 0.0.13 - Jun 29, 2016
@@ -127,4 +159,3 @@
 
 --------------------------------------------------------------------------------
 - v0.0.1 - Start project.
-
