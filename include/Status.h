@@ -27,7 +27,9 @@
 
 NS_COREGAME_BEGIN
 
-///@brief Defines the possible states of Game.
+
+///-----------------------------------------------------------------------------
+/// @brief Defines the possible states of Game.
 enum class Status
 {
     Victory, ///< Game is over     - Player won.
@@ -35,9 +37,20 @@ enum class Status
     Continue ///< Game is not over - Keep playing.
 };
 
-///@brief Output the name of status. (ex: Status::Victory)
-///@see Status.
-std::ostream& operator <<(std::ostream &os, Status status);
+
+///-----------------------------------------------------------------------------
+/// @brief Check if game is over.
+/// @return True if status != Status::Continue, false otherwise.
+/// @see Status.
+constexpr inline bool
+IsGameOver(Status status) noexcept
+{
+    return status != Status::Continue;
+}
+
+///-----------------------------------------------------------------------------
+/// @brief Output the name of status. (ex: Status::Victory)
+/// @see Status.
+std::ostream& operator <<(std::ostream &os, Status status) noexcept;
 
 NS_COREGAME_END
-

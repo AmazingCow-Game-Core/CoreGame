@@ -24,10 +24,12 @@
 // Usings
 USING_NS_COREGAME;
 
+
 //----------------------------------------------------------------------------//
 // Enums                                                                      //
 //----------------------------------------------------------------------------//
-std::ostream& CoreGame::operator <<(std::ostream &os, Status status)
+std::ostream&
+CoreGame::operator <<(std::ostream &os, Status status) noexcept
 {
     os << ((status == Status::Continue) ? "Status::Continue" :
            (status == Status::Defeat  ) ? "Status::Defeat"   :
