@@ -25,7 +25,7 @@ cmake_minimum_required(VERSION 3.5)
 ## Project Settings                                                           ##
 ##----------------------------------------------------------------------------##
 set(PROJECT_NAME CoreGame)
-project(CoreFile)
+project(${PROJECT_NAME})
 
 
 ##----------------------------------------------------------------------------##
