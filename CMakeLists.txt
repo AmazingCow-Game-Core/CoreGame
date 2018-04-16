@@ -22,23 +22,29 @@ cmake_minimum_required(VERSION 3.5)
 
 
 ##----------------------------------------------------------------------------##
-## Project Settings                                                           ##
+## Project                                                                    ##
 ##----------------------------------------------------------------------------##
-set(PROJECT_NAME CoreGame)
-project(${PROJECT_NAME})
+set(PROJECT acow_game_goodies)
+project(${PROJECT})
 
 
 ##----------------------------------------------------------------------------##
 ## Sources                                                                    ##
 ##----------------------------------------------------------------------------##
+##------------------------------------------------------------------------------
+## Sources
 set(SOURCES
-    CoreGame/src/Status.cpp
+    acow/src/Status.cpp
 )
 
-add_library(${PROJECT_NAME} ${SOURCES})
-
 
 ##----------------------------------------------------------------------------##
-## Include directories                                                        ##
+## Library                                                                    ##
 ##----------------------------------------------------------------------------##
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+##------------------------------------------------------------------------------
+## Lib.
+add_library(${PROJECT} ${SOURCES})
+
+##-----------------------------------------------------------------------------
+## Include directories.
+target_include_directories(${PROJECT} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
