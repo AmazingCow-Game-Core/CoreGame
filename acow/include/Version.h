@@ -7,12 +7,12 @@
 //                    |   _   ||     |_ |       ||   _   |                    //
 //                    |__| |__||_______||_______||__| |__|                    //
 //                             www.amazingcow.com                             //
-//  File      : Status.h                                                      //
+//  File      : CoreGame_Utils.h                                              //
 //  Project   : CoreGame                                                      //
-//  Date      : May 03, 2016                                                  //
+//  Date      : Mar 29, 2018                                                  //
 //  License   : GPLv3                                                         //
 //  Author    : n2omatt <n2omatt@amazingcow.com>                              //
-//  Copyright : AmazingCow - 2016, 2017                                       //
+//  Copyright : AmazingCow - 2018                                             //
 //                                                                            //
 //  Description :                                                             //
 //                                                                            //
@@ -20,37 +20,15 @@
 
 #pragma once
 
-// std
-#include <ostream>
-// CoreGame
-#include "CoreGame_Utils.h"
+//----------------------------------------------------------------------------//
+// Version                                                                    //
+//----------------------------------------------------------------------------//
+#define ACOW_GAME_GOODIES_VERSION_MAJOR    "1"
+#define ACOW_GAME_GOODIES_VERSION_MINOR    "0"
+#define ACOW_GAME_GOODIES_VERSION_REVISION "0"
 
-NS_COREGAME_BEGIN
+#define ACOW_GAME_GOODIES_VERSION           \
+        ACOW_GAME_GOODIES_VERSION_MAJOR "." \
+        ACOW_GAME_GOODIES_VERSION_MINOR "." \
+        ACOW_GAME_GOODIES_VERSION_REVISION
 
-
-///-----------------------------------------------------------------------------
-/// @brief Defines the possible states of Game.
-enum class Status
-{
-    Victory, ///< Game is over     - Player won.
-    Defeat,  ///< Game is over     - Player lose.
-    Continue ///< Game is not over - Keep playing.
-};
-
-
-///-----------------------------------------------------------------------------
-/// @brief Check if game is over.
-/// @return True if status != Status::Continue, false otherwise.
-/// @see Status.
-constexpr inline bool
-IsGameOver(Status status) noexcept
-{
-    return status != Status::Continue;
-}
-
-///-----------------------------------------------------------------------------
-/// @brief Output the name of status. (ex: Status::Victory)
-/// @see Status.
-std::ostream& operator <<(std::ostream &os, Status status) noexcept;
-
-NS_COREGAME_END

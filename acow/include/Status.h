@@ -7,7 +7,7 @@
 //                    |   _   ||     |_ |       ||   _   |                    //
 //                    |__| |__||_______||_______||__| |__|                    //
 //                             www.amazingcow.com                             //
-//  File      : Status.cpp                                                    //
+//  File      : Status.h                                                      //
 //  Project   : CoreGame                                                      //
 //  Date      : May 03, 2016                                                  //
 //  License   : GPLv3                                                         //
@@ -18,22 +18,40 @@
 //                                                                            //
 //---------------------------------------------------------------------------~//
 
-// Header
-#include "../include/Status.h"
+#pragma once
 
-// Usings
-USING_NS_COREGAME;
+// std
+#include <ostream>
 
 
-//----------------------------------------------------------------------------//
-// Enums                                                                      //
-//----------------------------------------------------------------------------//
-std::ostream&
-CoreGame::operator <<(std::ostream &os, Status status) noexcept
+namespace acow { namespace game_goodies {
+
+///-----------------------------------------------------------------------------
+/// @brief Defines the possible states of Game.
+enum class Status
 {
-    os << ((status == Status::Continue) ? "Status::Continue" :
-           (status == Status::Defeat  ) ? "Status::Defeat"   :
-                                          "Status::Victory");
+    Victory, ///< Game is over     - Player won.
+    Defeat,  ///< Game is over     - Player lose.
+    Continue ///< Game is not over - Keep playing.
+};
 
-    return os;
+
+///-----------------------------------------------------------------------------
+/// @brief Check if game is over.
+/// @return True if status != Status::Continue, false otherwise.
+/// @see Status.
+constexpr inline bool
+IsGameOver(Status status) noexcept
+{
+    return status != Status::Continue;
 }
+
+///-----------------------------------------------------------------------------
+/// @brief Output the name of status. (ex: Status::Victory)
+/// @see Status.
+std::ostream& operator <<(std::ostream &os, Status status) noexcept;
+
+
+} // namespace game_goodies 
+} // namespace acow 
+

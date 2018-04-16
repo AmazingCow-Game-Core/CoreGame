@@ -7,19 +7,29 @@
 //                    |   _   ||     |_ |       ||   _   |                    //
 //                    |__| |__||_______||_______||__| |__|                    //
 //                             www.amazingcow.com                             //
-//  File      : CoreGame.h                                                    //
+//  File      : Status.cpp                                                    //
 //  Project   : CoreGame                                                      //
-//  Date      : Mar 29, 2018                                                  //
+//  Date      : May 03, 2016                                                  //
 //  License   : GPLv3                                                         //
 //  Author    : n2omatt <n2omatt@amazingcow.com>                              //
-//  Copyright : AmazingCow - 2018                                             //
+//  Copyright : AmazingCow - 2016, 2017                                       //
 //                                                                            //
 //  Description :                                                             //
 //                                                                            //
 //---------------------------------------------------------------------------~//
 
+// Header
+#include "../include/Status.h"
+
 //----------------------------------------------------------------------------//
-// Export Headers                                                             //
+// Enums                                                                      //
 //----------------------------------------------------------------------------//
-#include "include/CoreGame_Utils.h"
-#include "include/Status.h"
+std::ostream&
+acow::game_goodies::operator <<(std::ostream &os, Status status) noexcept
+{
+    os << ((status == Status::Continue) ? "Status::Continue" :
+           (status == Status::Defeat  ) ? "Status::Defeat"   :
+                                          "Status::Victory");
+
+    return os;    
+}
